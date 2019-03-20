@@ -16,4 +16,7 @@ ENV PYTHONPATH /usr/local/src:${PYTHONPATH}
 RUN mkdir -p /usr/local/src/pysmurf_utils
 ADD scripts/* /usr/local/src/pysmurf_utils/
 
-ENTRYPOINT ["ipython3", "-i", "/usr/local/src/pysmurf_utils/pysmurf_startup.py"]
+# Default EPICS prefix value
+ENV EPICS_PREFIX "smurf_server"
+
+ENTRYPOINT ["ipython3", "-i", "/usr/local/src/pysmurf_utils/pysmurf_startup.sh"]
