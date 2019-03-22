@@ -17,8 +17,9 @@ usage()
     echo "Start pysmurf"
     echo ""
     echo "usage: ${script_name} [-e|--epics <epics_prefix>] [-h|--help]"
-    echo "    -e|--epics <epics_prefix> : Sets the EPICS PV name prefix (defaults to 'smurf_server')."
-    echo "    -h|--help                 : Show this message."
+    echo "    -e|--epics <epics_prefix>      : Sets the EPICS PV name prefix (defaults to 'smurf_server')."
+    echo "    -c|--config-file <config_file> : Path to the configuration path"
+    echo "    -h|--help                      : Show this message."
     echo ""
 }
 
@@ -36,10 +37,14 @@ case ${key} in
     epics_prefix="$2"
     shift
     ;;
+    -c|--config-file)
+    config_file="$2"
+    shift
+    ;;
     -h|--help)
-	usage
-	exit 0
-	;;
+    usage
+    exit 0
+    ;;
     *)
     echo "ERROR: Unknown argument..."
     usage
@@ -55,8 +60,18 @@ echo
 # and it is set to 'smurf_server' by default in the Dockerfile.
 # If a new prefix is passed as an argument, override the environmental variable.
 if [ ! -z ${epics_prefix+x} ]; then
-	echo "Setting EPCIS_PREFIX enviromental variable to ${epics_prefix}..."
-	export EPICS_PREFIX=${epics_prefix}
+    echo "Setting EPCIS_PREFIX environmental variable to ${epics_prefix}..."
+    export EPICS_PREFIX=${epics_prefix}
+fi
+
+# Set the environmental variable 'CONFIG_FILE' to the passed argument
+if [ ! -z ${config_file+x} ]; then
+    if [ ! -f ${config_file} ]; then
+        echo "ERROR: Configuration file '${config_file}' not found!"
+    else
+        echo "Setting CONFIG_FILE environmental variable to ${config_file}..."
+        export CONFIG_FILE=${config_file}
+    fi
 fi
 
 echo "Starting the ipython session"
