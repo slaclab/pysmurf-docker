@@ -3,11 +3,11 @@ FROM tidair/smurf-base:R0.0.0
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive \
     apt-get install -y \
-    tzdata \
-    python3-tk \
+    python3-pyqt4 \
+    python3-matplotlib \
  && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install scipy pandas matplotlib
+RUN pip3 install scipy pandas
 
 WORKDIR /usr/local/src
 RUN git clone https://github.com/slaclab/pysmurf.git -b adding-hb
@@ -26,5 +26,8 @@ ENV EPICS_CA_ADDR_LIST localhost
 
 # Default EPICS prefix value
 ENV EPICS_PREFIX "smurf_server"
+
+# Set Qt5Agg as the matplotlib backend
+ENV MPLBACKEND Qt4Agg
 
 ENTRYPOINT ["pysmurf_startup.sh"]
