@@ -32,3 +32,7 @@ jobs:
         - docker tag ${DOCKER_ORG_NAME}/${DOCKER_REPO} ${DOCKER_ORG_NAME}/${DOCKER_REPO}:${DOCKER_TAG};
         - docker push ${DOCKER_ORG_NAME}/${DOCKER_REPO}:${DOCKER_TAG};
         - echo "Docker image '${DOCKER_ORG_NAME}/${DOCKER_REPO}:${DOCKER_TAG}' pushed"
+
+notifications:
+  slack:
+    secure: eYIzKWR8dWO8Nr/Gvik05fwMDo9RPfNLfqUpbJ1d7vkS1hVshE/JTUaQabUsSOgA0K6fAxL/CpiUzKyIjemAmYXDVwPHYZ2Ay37SX+djX4FUyUf8VCn5heoRI7kJZR8iPu9td8chRlj/vSkrxexoVN6m1WdsuVWWe3iNBDtk840bwwfbFmydckDQlWZfRmxf5Y/5jS3iIVRs2ao8AL/sIjuCH3iscI/LRhxMELmOF70ls08Awd0saOLYb4bXzUxDUSDzeuOsboLlUUUxWa6+0N5V3/wRUq0V+xbxKf1FiKCVJW6R2bmZ0Gm0RDhf+jFbjUMcmqRzQrmRAbrtA85CMsknXwz88vK9UbtdqX4I99Z7HYxAhDSehlNgrCbCYya2UDpYVtfJsTaTcWAu4DRbmw6nIoAbiS1Wc47KfNmGI4Ew2iq1eypg+REMLjG5k5hYfnWQaBJYr1IZ3ZMZeWVx2P2jv3tlzJjC7oAr2wCO1n2UPg+fU10Emb3jZr/J05CMcVfhRnmx+qsVrAXXT/u27p17eB1Dnlri7RT/bArVQheHdvPjDVJ6Ej4Z8cod4woDzdcFdrdCGiOqDYXnMh8VJWkByRIrHlgfkrIRrrUvANhcvOU5/pOHHymZvK828iLYwrNBnz3/Q2HUHaQecUUHV6r/7btO2x4wVxLKSR0CnLo=
