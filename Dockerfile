@@ -10,7 +10,7 @@ RUN apt-get update && \
     python3-matplotlib \
  && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install scipy pandas pyyaml
+RUN pip3 install scipy pandas pyyaml seaborn
 
 WORKDIR /usr/local/src
 RUN git clone https://github.com/slaclab/pysmurf.git -b v2.0.0
