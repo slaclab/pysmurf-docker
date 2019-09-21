@@ -13,7 +13,7 @@ RUN apt-get update && \
 RUN pip3 install scipy pandas pyyaml seaborn
 
 WORKDIR /usr/local/src
-RUN git clone https://github.com/slaclab/pysmurf.git -b v3.0.0
+RUN git clone https://github.com/slaclab/pysmurf.git -b v3.1.0
 ENV PYTHONPATH /usr/local/src:${PYTHONPATH}
 ENV PYSMURF_TOP /usr/local/src/pysmurf
 
