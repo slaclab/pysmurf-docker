@@ -10,7 +10,7 @@ RUN apt-get update && \
     python3-matplotlib \
  && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install scipy pandas pyyaml seaborn
+RUN pip3 install scipy pandas pyyaml seaborn jupyter
 
 WORKDIR /usr/local/src
 RUN git clone https://github.com/slaclab/pysmurf.git -b v3.1.3
@@ -32,5 +32,9 @@ ENV EPICS_PREFIX "smurf_server"
 
 # Set GTK3Agg as the matplotlib backend
 ENV MPLBACKEND GTK3Agg
+
+# Set jupyter config stuff
+COPY jupyter /etc/jupyter
+ENV JUPYTER_CONFIG_DIR /etc/jupyter
 
 ENTRYPOINT ["pysmurf_startup.sh"]
