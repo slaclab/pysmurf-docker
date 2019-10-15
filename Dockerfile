@@ -34,7 +34,8 @@ ENV EPICS_PREFIX "smurf_server"
 ENV MPLBACKEND GTK3Agg
 
 # Set jupyter config stuff
-COPY jupyter /etc/jupyter
-ENV JUPYTER_CONFIG_DIR /etc/jupyter
+COPY jupyter /.jupyter
+RUN chown cryo:smurf -R /.jupyter
+ENV JUPYTER_CONFIG_DIR /.jupyter
 
 ENTRYPOINT ["pysmurf_startup.sh"]
